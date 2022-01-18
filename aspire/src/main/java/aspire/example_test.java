@@ -1,4 +1,4 @@
-package aspire;
+package aspire.TestNG;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -31,21 +31,38 @@ public class example_test {
 		Thread.sleep(1000);
 	}
 	@Test(priority = 1)
-	public void Gotoproductpage() {
+	public void Gotoproductpage() throws Exception {
 		WebElement inventoryitem  = driver.findElement(By.xpath("//a[@id='result_app_1']/div"));
 		inventoryitem.click();  
+		Thread.sleep(1000);
 		WebElement productitem  = driver.findElement(By.xpath("//a[contains(text(),'Products')]"));
 		productitem.click();  
+		Thread.sleep(1000);
 		WebElement productitem1  = driver.findElement(By.xpath("//*[@class=\"dropdown-item o_menu_entry_lvl_2\"]//span[contains(text(),'Products')]"));
 		productitem1.click(); 
+		Thread.sleep(1000);
 	}
 	@Test(priority = 2)
-	public void createnewproduct() {
-		
+	public void createnewproduct() throws Exception {
+		WebElement createproductbutton = driver.findElement(By.xpath("//*[@class=\"btn btn-primary o-kanban-button-new\"]"));
+		createproductbutton.click(); 
+		Thread.sleep(1000);
+		WebElement productname = driver.findElement(By.xpath("//input[@placeholder=\"Product Name\"]"));
+		productname.sendKeys("cuonghuynh"); 
+		WebElement savecreateproduct = driver.findElement(By.xpath("//button[@class=\"btn btn-primary o_form_button_save\"]"));
+		savecreateproduct.click();
+		Thread.sleep(1000);
+
+	}
+	@Test(priority = 2)
+	public void updateproduct() throws Exception {
+		WebElement updateproductbutton = driver.findElement(By.xpath("//*[@class=\"btn btn-primary o_form_button_edit\"]"));
+		updateproductbutton.click(); 
+		Thread.sleep(1000);
 	}
 	@BeforeTest
 	public void beforeTest() throws Exception {
-		driver = new FirefoxDriver();
+		driver = new ChromeDriver();
 	}
 
 	@AfterTest
